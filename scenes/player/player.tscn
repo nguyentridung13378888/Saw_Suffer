@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://bat630tuhchfa"]
+
+[ext_resource type="Script" uid="uid://dphu6xo75gnha" path="res://scenes/player/player.gd" id="1_8afob"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
+height = 2.1669922
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8afob"]
+albedo_color = Color(1, 0.07058824, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8afob"]
+material = SubResource("StandardMaterial3D_8afob")
+size = Vector3(0.1, 0.2, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dovo2"]
+albedo_color = Color(0.3947965, 0.27385753, 0.2829353, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gmlin"]
+material = SubResource("StandardMaterial3D_dovo2")
+size = Vector3(0.01, 0.25, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmlin"]
+albedo_color = Color(0.3907521, 0, 0.0090208575, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8afob"]
+material = SubResource("StandardMaterial3D_gmlin")
+radius = 0.2
+height = 0.3
+
+[node name="Player" type="CharacterBody3D" unique_id=373149497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35591006, 0)
+script = ExtResource("1_8afob")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1783575111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5175805, 0)
+shape = SubResource("CapsuleShape3D_8afob")
+
+[node name="Head" type="Node3D" parent="." unique_id=910088206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58514714, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1002076460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6919293, 0)
+
+[node name="Node3D" type="Node3D" parent="Head/Camera3D" unique_id=1414094934]
+
+[node name="weapon_holder" type="MeshInstance3D" parent="Head/Camera3D/Node3D" unique_id=311130139]
+
+[node name="Chainsaw_body" type="MeshInstance3D" parent="Head/Camera3D/Node3D/weapon_holder" unique_id=1495778823]
+transform = Transform3D(0.9549234, 0.25202262, 0.15686134, -0.2681662, 0.95899546, 0.091735296, -0.12731005, -0.1296652, 0.9833511, 0.4397027, -0.189058, -0.6541293)
+mesh = SubResource("BoxMesh_8afob")
+
+[node name="Blade" type="MeshInstance3D" parent="Head/Camera3D/Node3D/weapon_holder/Chainsaw_body" unique_id=1997370942]
+transform = Transform3D(0.99999976, -2.7939677e-08, -1.4901161e-08, 5.2154064e-08, 0.99999976, 0, 0, 0, 0.9999999, -0.0137836635, -0.004104778, -0.2590345)
+mesh = SubResource("BoxMesh_gmlin")
+
+[node name="the_heart" type="MeshInstance3D" parent="Head/Camera3D" unique_id=786296380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0030528903, -0.35532737, -0.6483606)
+mesh = SubResource("SphereMesh_8afob")
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=1466264633]
+target_position = Vector3(0, -1, -2)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Head" unique_id=598076482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021986842, 1.8223648, 0.012680054)
